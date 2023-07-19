@@ -34,7 +34,10 @@ public class TsubuyakiController {
         List<Tsubuyaki> list = ts.getAllTsubuyaki(); //全つぶやきを取得
         model.addAttribute("tsubuyakiList", list);   //モデル属性にリストをセット  
         model.addAttribute("tsubuyakiForm", new TsubuyakiForm());  //空フォームをセット
-        List<Tsubuyaki> searchlist = ts.getAllTsubuyaki();
+        //List<Tsubuyaki> searchlist = ts.getAllTsubuyaki();
+
+        List<Tsubuyaki> searchlist = ts.searchTsubuyaki(".ooooo");
+        
         model.addAttribute("searchList",searchlist );
         return "tsubuyaki_list"; //リスト画面を返す
 
