@@ -61,6 +61,11 @@ public class TsubuyakiService {
 
   
     }
+    public List<Tsubuyaki> searchTsubuyaki(String query) {
+        return repo.findByCommentContaining(query);
+    }
+
+
 
   
  }

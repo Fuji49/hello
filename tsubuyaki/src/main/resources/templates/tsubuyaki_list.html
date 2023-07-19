@@ -40,28 +40,34 @@
     <h2>投稿する</h2>
 
   
-    <form th:action="@{/read}" th:object="${tsubuyakiForm}" method="post">  
-        <label for="name">お名前：</label>  
+    <form th:action="@{/read}" th:object="${tsubuyakiForm}" method="post">
+
+  
+        <label for="name">お名前：</label>
+
+  
         <input type="text" th:field="*{name}" size="8" value="名無しさん" />
+
+  
         <label for="comment">つぶやき：</label>
+
+  
         <input type="text" required th:field="*{comment}" />
+
+  
         <input type="submit" value="つぶやく" />
 
   
     </form>
-
     <h2>検索する</h2>
-
-  
-    <form th:action="@{/search}" th:object="${tsubuyakiForm}" method="post">  
-        <label for="name">検索ワード：</label>  
-        <input type="text" th:field="*{name}" size="8" value="" />
+    <form th:action="@{/search}" method="get">
+        <label for="query">検索ワード：</label>
+        <input type="text" id="query" name="query" required />
         <input type="submit" value="検索" />
+    </form>
+    <h1>検索結果</h1>
 
   
-    </form>
-
-    
     <ul>
 
   
@@ -75,6 +81,8 @@
 
   
     </ul>
+
+
   
     <h2>タイトルへ</h2>
 

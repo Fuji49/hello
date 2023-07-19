@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.kobe_u.cs.daikibo.tsubuyaki.entity.Tsubuyaki;
 import jp.kobe_u.cs.daikibo.tsubuyaki.sevice.TsubuyakiService;
@@ -70,27 +71,15 @@ public class TsubuyakiController {
 
     }
 
-    //検索結果を表示
-    @PostMapping("/search")
-    String showSearchList(@ModelAttribute("SeachForm") SearchForm form, Model model){
-        List<Tsubuyaki> list = ts.getAllTsubuyaki(); //全つぶやきを取得
-        model.addAttribute("tshubuyakiList",list);
-        model.addAttribute("tsubuyakiForm",new TsubuyakiForm());
-        List<Tsubuyaki> searchlist = ts.getAllTsubuyaki();
-        model.addAttribute("searchList",searchlist);
-        return "tsubuyaki_list";
-
+    @GetMapping("/search")
+    public String search(@RequestParam String query, Model model) {
+        List<Tsubuyaki> list = ts.getAllTsubuyaki();
+        model.addAttribute("tsubuyakiList", list);   //モデル属性にリストをセット  
+        model.addAttribute("tsubuyakiForm", new TsubuyakiForm());  //空フォームをセット
+        List<Tsubuyaki> searchlist = ts.searchTsubuyaki(query);
+        model.addAttribute("searchList",searchlist );
+        return "tsubuyaki_list";  // 使用するテンプレートの名前
     }
 
-
-    
-
-
-
-
-
-      
-
-  
 }
 
